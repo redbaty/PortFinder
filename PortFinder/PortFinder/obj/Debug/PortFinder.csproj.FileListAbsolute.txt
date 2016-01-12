@@ -3,3 +3,8 @@ C:\Users\marco\Documents\Visual Studio 2013\Projects\Ping Forcebrute\PortFinder\
 C:\Users\marco\Documents\Visual Studio 2013\Projects\Ping Forcebrute\PortFinder\obj\Debug\PortFinder.csprojResolveAssemblyReference.cache
 C:\Users\marco\Documents\Visual Studio 2013\Projects\Ping Forcebrute\PortFinder\obj\Debug\PortFinder.dll
 C:\Users\marco\Documents\Visual Studio 2013\Projects\Ping Forcebrute\PortFinder\obj\Debug\PortFinder.pdb
+C:\Users\marco\Documents\GitHub\PortFinder\PortFinder\PortFinder\bin\Debug\PortFinder.dll
+C:\Users\marco\Documents\GitHub\PortFinder\PortFinder\PortFinder\bin\Debug\PortFinder.pdb
+C:\Users\marco\Documents\GitHub\PortFinder\PortFinder\PortFinder\obj\Debug\PortFinder.csprojResolveAssemblyReference.cache
+C:\Users\marco\Documents\GitHub\PortFinder\PortFinder\PortFinder\obj\Debug\PortFinder.dll
+C:\Users\marco\Documents\GitHub\PortFinder\PortFinder\PortFinder\obj\Debug\PortFinder.pdb

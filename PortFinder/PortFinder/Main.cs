@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Sockets;
 using System.Threading;
@@ -34,14 +33,14 @@ namespace PortFinder
             PortSearched += AntiCrash;
         }
 
+        private void AntiCrash(int index) { }
+        private void AntiCrash(bool sucess) { }
+
         public void Run()
         {
             Thread t = new Thread(FindOpenPorts);
             t.Start();
         }
-
-        private void AntiCrash(int index) { }
-        private void AntiCrash(bool sucess) { }
 
         void FindOpenPorts()
         {

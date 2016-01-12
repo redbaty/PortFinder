@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortFinder", "PortFinder\PortFinder.csproj", "{67FA74AF-0EEC-4D25-BA3C-7094F4E740E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortFinder.Demo", "PortFinder.Demo\PortFinder.Demo.csproj", "{C33348B0-E823-45D8-B24F-EF7D5AB47C9A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67FA74AF-0EEC-4D25-BA3C-7094F4E740E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67FA74AF-0EEC-4D25-BA3C-7094F4E740E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67FA74AF-0EEC-4D25-BA3C-7094F4E740E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67FA74AF-0EEC-4D25-BA3C-7094F4E740E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C33348B0-E823-45D8-B24F-EF7D5AB47C9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C33348B0-E823-45D8-B24F-EF7D5AB47C9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C33348B0-E823-45D8-B24F-EF7D5AB47C9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C33348B0-E823-45D8-B24F-EF7D5AB47C9A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

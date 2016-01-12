@@ -18,3 +18,7 @@ then we hook up to some of the available events
 and last but not least, start the searching
   
     finder.Run();
+    
+# TODO
+
+- Improve perfomance.

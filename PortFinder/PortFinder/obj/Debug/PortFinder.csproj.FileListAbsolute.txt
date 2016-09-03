@@ -8,3 +8,7 @@ C:\Users\marco\Documents\GitHub\PortFinder\PortFinder\PortFinder\bin\Debug\PortF
 C:\Users\marco\Documents\GitHub\PortFinder\PortFinder\PortFinder\obj\Debug\PortFinder.csprojResolveAssemblyReference.cache
 C:\Users\marco\Documents\GitHub\PortFinder\PortFinder\PortFinder\obj\Debug\PortFinder.dll
 C:\Users\marco\Documents\GitHub\PortFinder\PortFinder\PortFinder\obj\Debug\PortFinder.pdb
+C:\Users\Marcos\Documents\GitHub\PortFinder\PortFinder\PortFinder\bin\Debug\PortFinder.dll
+C:\Users\Marcos\Documents\GitHub\PortFinder\PortFinder\PortFinder\bin\Debug\PortFinder.pdb
+C:\Users\Marcos\Documents\GitHub\PortFinder\PortFinder\PortFinder\obj\Debug\PortFinder.dll
+C:\Users\Marcos\Documents\GitHub\PortFinder\PortFinder\PortFinder\obj\Debug\PortFinder.pdb

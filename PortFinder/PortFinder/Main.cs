@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,13 +27,7 @@ namespace PortFinder
         {
             Host = hostname;
             Limits = new[] { min, max };
-            PortFound += AntiCrash;
-            PortDone += AntiCrash;
-            PortSearched += AntiCrash;
         }
-
-        private void AntiCrash(int index) { }
-        private void AntiCrash(bool sucess) { }
 
         public void Run()
         {
@@ -46,21 +39,18 @@ namespace PortFinder
         {
             try
             {
-                Stopwatch watcher = new Stopwatch();
-                watcher.Restart();
-                Parallel.For(Limits[0], Limits[1], (index, loopState) =>
+                Parallel.For(Limits[0], Limits[1]+1, (index, loopState) =>
                 {
-                    if (PortSearched != null) PortSearched(index);
+                    PortSearched?.Invoke(index);
                     if (!PingHost(Host, index)) return;
-                    if (PortFound != null) PortFound(index);
+                    PortFound?.Invoke(index);
                 });
-                watcher.Stop();
-                ElapsedTime = watcher.Elapsed;
-                if (PortDone != null) PortDone(true);
+
+                PortDone?.Invoke(true);
             }
             catch (Exception)
             {
-                if (PortDone != null) PortDone(false);
+                PortDone?.Invoke(false);
             }
         }
 

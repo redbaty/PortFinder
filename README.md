@@ -3,22 +3,32 @@ A small library to find open ports on a specified host.
 
 As the title says, the only purpose of this is to find opened ports.
 
-# Usage
+# Program Usage
+
+    Portfinder.exe host min max
+
+### Being 
+* **host** the target hostname *i.e google.com*
+* **min** the minimum port range *i.e 70*
+* **max** the port range limit *i.e 80*
+
+# API Usage
 
 First we need to instantiate an object.
-
-    var finder = new PortFinderManager(hostname, minimum, maximum);
+```csharp
+var finder = new PortFinderManager(hostname, minimum, maximum);
+```
     
 then we hook up to some of the available events
-
-    finder.PortSearched += delegate { };
-    finder.PortDone += delegate { };
-    finder.PortFound += delegate { };
-
+```csharp
+finder.PortSearched += delegate(int index, bool opened) { }; //Occurs when a port where searched.
+finder.SearchDone += delegate { }; //Occurs when the search is complete.
+```
 and last but not least, start the searching
-  
-    finder.Run();
-    
+```csharp
+finder.Run();
+```
+
 # TODO
 
 - Improve perfomance.

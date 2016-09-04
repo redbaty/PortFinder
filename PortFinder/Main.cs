@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,19 +16,18 @@ namespace PortFinder
         public int[] Limits;
         public string Host;
 
-        public event PortFoundDelegate PortFound;
-        public delegate void PortFoundDelegate(int index);
-        
-        public event PortDoneDelegate PortDone;
-        public delegate void PortDoneDelegate(bool sucess);
-        
+        public event SearchDoneDelegate SearchDone;
+
+        public delegate void SearchDoneDelegate(bool sucess);
+
         public event PortSearchedDelegate PortSearched;
-        public delegate void PortSearchedDelegate(int index);
+
+        public delegate void PortSearchedDelegate(int index, bool opened);
 
         public PortFinderManager(string hostname, int min, int max)
         {
             Host = hostname;
-            Limits = new[] { min, max };
+            Limits = new[] {min, max+1};
         }
 
         public void Run()
@@ -39,34 +40,27 @@ namespace PortFinder
         {
             try
             {
-                Parallel.For(Limits[0], Limits[1]+1, (index, loopState) =>
+                for (var index = Limits[0]; index < Limits[1]; index++)
                 {
-                    PortSearched?.Invoke(index);
-                    if (!PingHost(Host, index)) return;
-                    PortFound?.Invoke(index);
-                });
+                    PortSearched?.Invoke(index, PingHost(Host, index));
+                }
 
-                PortDone?.Invoke(true);
+                SearchDone?.Invoke(true);
             }
             catch (Exception)
             {
-                PortDone?.Invoke(false);
+                SearchDone?.Invoke(false);
             }
         }
 
         bool PingHost(string host, int port)
         {
-            try
-            {
-                TcpClient client = new TcpClient(host, port);
-                return true;
-            }
-            catch (Exception)
+            var client = new TcpClient();
+            if (!client.ConnectAsync(host, port).Wait(1000))
             {
                 return false;
             }
+            return true;
         }
     }
-
-
 }

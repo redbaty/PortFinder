@@ -11,7 +11,7 @@ namespace PortFinder.Demo.Utils
         {
             {ReportType.OK, Color.LawnGreen},
             {ReportType.WARN, Color.Gold},
-            {ReportType.INFO, Color.DarkGray},
+            {ReportType.INFO, Color.DarkOrange},
             {ReportType.ERROR, Color.Red}
         };
 

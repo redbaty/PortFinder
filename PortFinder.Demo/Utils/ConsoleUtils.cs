@@ -41,5 +41,14 @@ namespace PortFinder.Demo.Utils
             Console.Write(new string(' ', Console.WindowWidth));
             Console.SetCursorPosition(currentLineCursorx, currentLineCursor);
         }
+
+        public static void ColorConsoleLine(int line, ConsoleColor color)
+        {
+            var bColor = Console.BackgroundColor;
+            Console.BackgroundColor = color;
+            ClearConsoleLine(line);
+            Console.BackgroundColor = bColor;
+        }
+
     }
 }

@@ -46,7 +46,7 @@ finder.PortSearched += delegate(int index, bool open) { }; //Occurs when a port 
  * (bool) Open: If the port is or not open
  
 ### Completed Event
-**_Occurs when the search is done.**_
+_**Occurs when the search is done.**_
 
 ```csharp
 finder.Completed += delegate(bool success) { };.

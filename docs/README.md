@@ -10,7 +10,7 @@ __Using arguments__
 
 __```Portfinder.exe host min max ```__
 
-__Being__
+* Being
  * **host** the target hostname *i.e google.com*
  * **min** the minimum port range *i.e 70*
  * **max** the port range limit *i.e 80*

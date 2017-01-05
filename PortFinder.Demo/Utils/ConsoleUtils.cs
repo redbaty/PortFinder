@@ -50,5 +50,47 @@ namespace PortFinder.Demo.Utils
             Console.BackgroundColor = bColor;
         }
 
+        public static void WriteWholeLineWithBackground(int line, string message, ConsoleColor background,
+            ConsoleColor foreground)
+        {
+            ColorConsoleLine(line, background);
+            var cPosy = Console.CursorTop;
+            var cPosx = Console.CursorLeft;
+            var fColor = Console.ForegroundColor;
+            var bColor = Console.BackgroundColor;
+
+            Console.SetCursorPosition(0, line);
+            Console.ForegroundColor = foreground;
+            Console.BackgroundColor = background;
+            Console.Write(message + "\n");
+
+            if (cPosy != line)
+                Console.SetCursorPosition(cPosx, cPosy);
+
+            Console.ForegroundColor = fColor;
+            Console.BackgroundColor = bColor;
+        }
+
+        public static void WriteWithBackground(int line, int row,string message, ConsoleColor background, ConsoleColor foreground)
+        {
+            var cPosy = Console.CursorTop;
+            var cPosx = Console.CursorLeft;
+            var fColor = Console.ForegroundColor;
+            var bColor = Console.BackgroundColor;
+
+            Console.SetCursorPosition(row, line);
+            Console.ForegroundColor = foreground;
+            Console.BackgroundColor = background;
+            Console.Write(message);
+
+            if (cPosy != line)
+                Console.SetCursorPosition(cPosx, cPosy);
+
+            Console.ForegroundColor = fColor;
+            Console.BackgroundColor = bColor;
+        }
+
+        public static void ColorCurrentConsoleLine(int line, ConsoleColor color, ConsoleColor foreground)
+            => ColorConsoleLine(Console.CursorTop, color);
     }
 }

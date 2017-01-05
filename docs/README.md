@@ -6,7 +6,7 @@ As the title says, the only purpose of this is to find opened ports.
 # Program Usage
 
 ### It can be used by two methods
-* Using arguments
+#### Using arguments
 
  * ```Portfinder.exe host min max ```
 

@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Net;
-using System.Net.NetworkInformation;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Sockets;
-using System.Threading;
 using System.Threading.Tasks;
 
 // ReSharper disable InconsistentNaming
@@ -11,12 +10,26 @@ namespace PortFinder
 {
     public class PortFinderManager
     {
-        public TimeSpan ElapsedTime;
+        public TimeSpan ElapsedTime { get; set; }
+        public Range PortsRange { get; set; }
+        public string Host { get; set; }
 
-        public int[] Limits;
-        public string Host;
+        public bool Success { get; set; }
+        public Exception Exception { get; set; }
 
-        public event SearchDoneDelegate SearchDone;
+        public Dictionary<int, bool> ResultsDictionary { get; set; }
+
+        public Dictionary<int, bool> OpenPortsDictionary =>
+            ResultsDictionary.Where(keyValuePair => keyValuePair.Value)
+                .ToDictionary(keyValuePair => keyValuePair.Key, keyValuePair => keyValuePair.Value);
+
+        public Dictionary<int, bool> ClosedPortsDictionary =>
+            ResultsDictionary.Where(keyValuePair => !keyValuePair.Value)
+                .ToDictionary(keyValuePair => keyValuePair.Key, keyValuePair => keyValuePair.Value);
+
+        #region Events
+
+        public event SearchDoneDelegate Completed;
 
         public delegate void SearchDoneDelegate(bool sucess);
 
@@ -24,36 +37,49 @@ namespace PortFinder
 
         public delegate void PortSearchedDelegate(int index, bool opened);
 
+        #endregion
+
         public PortFinderManager(string hostname, int min, int max)
         {
             Host = hostname;
-            Limits = new[] {min, max+1};
+            PortsRange = new Range
+            {
+                Min = min,
+                Max = max
+            };
         }
 
-        public void Run()
+        public PortFinderManager(string hostname, Range range)
         {
-            Thread t = new Thread(FindOpenPorts);
-            t.Start();
+            Host = hostname;
+            PortsRange = range;
         }
 
-        void FindOpenPorts()
+
+        public void FindOpenPorts()
         {
+            ResultsDictionary = new Dictionary<int, bool>();
+
             try
             {
-                for (var index = Limits[0]; index < Limits[1]; index++)
+                for (var index = PortsRange.Min; index <= PortsRange.Max; index++)
                 {
-                    PortSearched?.Invoke(index, PingHost(Host, index));
+                    var result = PingHost(Host, index);
+                    PortSearched?.Invoke(index, result);
+                    ResultsDictionary.Add(index, result);
                 }
-
-                SearchDone?.Invoke(true);
+                Success = true;
+                Completed?.Invoke(Success);
             }
-            catch (Exception)
+            catch(Exception ex)
             {
-                SearchDone?.Invoke(false);
+                Success = false;
+                Exception = ex;
+                Completed?.Invoke(Success);
             }
         }
 
-        bool PingHost(string host, int port)
+        private static bool PingHost(string host, int port)
         {
             var client = new TcpClient();
             if (!client.ConnectAsync(host, port).Wait(1000))

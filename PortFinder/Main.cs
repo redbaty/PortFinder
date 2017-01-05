@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
-using System.Threading.Tasks;
 
 // ReSharper disable InconsistentNaming
 
@@ -10,13 +9,13 @@ namespace PortFinder
 {
     public class PortFinderManager
     {
-        public TimeSpan ElapsedTime { get; set; }
-        public Range PortsRange { get; set; }
-        public string Host { get; set; }
-
-        public bool Success { get; set; }
         public Exception Exception { get; set; }
-
+        public TimeSpan ElapsedTime { get; set; }   
+        public Range PortsRange { get; set; }
+           
+        public string Host { get; set; }
+        public bool Success { get; set; }
+   
         public Dictionary<int, bool> ResultsDictionary { get; set; }
 
         public Dictionary<int, bool> OpenPortsDictionary =>
@@ -39,6 +38,12 @@ namespace PortFinder
 
         #endregion
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PortFinderManager"/> class.
+        /// </summary>
+        /// <param name="hostname">The hostname.</param>
+        /// <param name="min">The minimum port value.</param>
+        /// <param name="max">The maximum port value.</param>
         public PortFinderManager(string hostname, int min, int max)
         {
             Host = hostname;
@@ -49,13 +54,20 @@ namespace PortFinder
             };
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PortFinderManager"/> class.
+        /// </summary>
+        /// <param name="hostname">The hostname.</param>
+        /// <param name="range">The ports range.</param>
         public PortFinderManager(string hostname, Range range)
         {
             Host = hostname;
             PortsRange = range;
         }
 
-
+        /// <summary>
+        /// Finds the open ports.
+        /// </summary>
         public void FindOpenPorts()
         {
             ResultsDictionary = new Dictionary<int, bool>();
@@ -79,6 +91,12 @@ namespace PortFinder
             }
         }
 
+        /// <summary>
+        /// Pings the host.
+        /// </summary>
+        /// <param name="host">The host.</param>
+        /// <param name="port">The port.</param>
+        /// <returns></returns>
         private static bool PingHost(string host, int port)
         {
             var client = new TcpClient();

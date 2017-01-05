@@ -9,6 +9,11 @@
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Range"/> class.
+        /// </summary>
+        /// <param name="max">The maximum value.</param>
+        /// <param name="min">The minimum value.</param>
         public Range(int max, int min)
         {
             Max = max;

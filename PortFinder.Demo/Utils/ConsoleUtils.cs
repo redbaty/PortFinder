@@ -32,5 +32,14 @@ namespace PortFinder.Demo.Utils
             }
             Console.Write($" {msg}\n");
         }
+
+        public static void ClearConsoleLine(int line)
+        {
+            int currentLineCursor = Console.CursorTop;
+            int currentLineCursorx = Console.CursorLeft;
+            Console.SetCursorPosition(0, line);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(currentLineCursorx, currentLineCursor);
+        }
     }
 }

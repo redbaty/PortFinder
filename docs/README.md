@@ -6,17 +6,17 @@ As the title says, the only purpose of this is to find opened ports.
 # Program Usage
 
 ### It can be used by two methods
-#### Using arguments
+__Using arguments__
 
- * ```Portfinder.exe host min max ```
+__```Portfinder.exe host min max ```__
 
- * Being 
-  * **host** the target hostname *i.e google.com*
-  * **min** the minimum port range *i.e 70*
-  * **max** the port range limit *i.e 80*
+__Being__
+ * **host** the target hostname *i.e google.com*
+ * **min** the minimum port range *i.e 70*
+ * **max** the port range limit *i.e 80*
 
-* Or by simply running it
- *  ``` Portfinder.exe```
+__Or by simply running it__
+__ ``` Portfinder.exe```__
 
 # Library Usage
 
@@ -35,8 +35,8 @@ var finder = new PortFinderManager(hostname, new Range{Min = MINIMUM, Max = MAXI
     
 then we hook up to some of the available events
 
-##### PortSearched Event
-###### Occurs whenever a port is sucessfully scanned.
+### PortSearched Event
+_**Occurs whenever a port is sucessfully scanned.**_
 ```csharp
 finder.PortSearched += delegate(int index, bool open) { }; //Occurs when a port where searched.
 ```
@@ -45,8 +45,8 @@ finder.PortSearched += delegate(int index, bool open) { }; //Occurs when a port 
  * (int) Index: The port number
  * (bool) Open: If the port is or not open
  
-##### Completed Event
-###### Occurs when the search is done.
+### Completed Event
+**_Occurs when the search is done.**_
 
 ```csharp
 finder.Completed += delegate(bool success) { };.

@@ -5,30 +5,59 @@ As the title says, the only purpose of this is to find opened ports.
 
 # Program Usage
 
-    Portfinder.exe host min max
+### It can be used by two methods
+* Using arguments
 
-### Being 
-* **host** the target hostname *i.e google.com*
-* **min** the minimum port range *i.e 70*
-* **max** the port range limit *i.e 80*
+ * ```Portfinder.exe host min max ```
 
-# API Usage
+ * Being 
+  * **host** the target hostname *i.e google.com*
+  * **min** the minimum port range *i.e 70*
+  * **max** the port range limit *i.e 80*
 
-First we need to instantiate an object.
+* Or by simply running it
+ *  ``` Portfinder.exe```
+
+# Library Usage
+
+
+First we need to instantiate an object, you can do this by explicitly typing the minimum and maximum values
+
 ```csharp
 var finder = new PortFinderManager(hostname, minimum, maximum);
 ```
+
+or by instantiating a **Range class** object 
+
+```csharp
+var finder = new PortFinderManager(hostname, new Range{Min = MINIMUM, Max = MAXIMUM});
+```
     
 then we hook up to some of the available events
+
+##### PortSearched Event
+###### Occurs whenever a port is sucessfully scanned.
 ```csharp
-finder.PortSearched += delegate(int index, bool opened) { }; //Occurs when a port where searched.
-finder.SearchDone += delegate { }; //Occurs when the search is complete.
-```
-and last but not least, start the searching
-```csharp
-finder.Run();
+finder.PortSearched += delegate(int index, bool open) { }; //Occurs when a port where searched.
 ```
 
-# TODO
+* Being
+ * (int) Index: The port number
+ * (bool) Open: If the port is or not open
+ 
+##### Completed Event
+###### Occurs when the search is done.
 
-- Improve perfomance.
+```csharp
+finder.Completed += delegate(bool success) { };.
+```
+
+* Being
+ * (bool) Success: Determines if the search occurred without any trouble.
+ 
+
+and last but not least, **start to search**
+
+```csharp
+finder.FindOpenPorts();
+```
